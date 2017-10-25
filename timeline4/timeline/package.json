@@ -1,0 +1,295 @@
+{
+  "name": "timeline ",
+  "version": "0.0.1",
+  "dependencies": {
+    "bcore": "0.0.18",
+    "d3": "^2.10.3",
+    "jquery": "2.1.4",
+    "lodash": "4.6.1"
+  },
+  "datav": {
+    "cn_name": "时间轴",
+    "icon": "",
+    "protocol": 2,
+    "type": [
+      ""
+    ],
+    "view": {
+      "width": "800",
+      "height": "800",
+      "minWidth": "200",
+      "minHeight": "100"
+    },
+    "apis": {
+      "source": {
+        "handler": "render",
+        "description": "接口描述",
+        "fields": {
+          "name": {
+            "description": "事件名"
+          },
+          "date": {
+            "description": "年月日"
+          },
+          "img": {
+            "description": "照片"
+          }
+        }
+      }
+    },
+    "config": {
+      "horizontalLayout": {
+        "name": "布局",
+        "type": "select",
+        "options": [
+          {
+            "name": "横向",
+            "value": true
+          },
+          {
+            "name": "纵向",
+            "value": false
+          }
+        ],
+        "default": true
+      },
+      "height": {
+        "name": "高度",
+        "type": "number",
+        "default": 450
+      },
+      "width": {
+        "name": "宽度",
+        "type": "number",
+        "default": 800
+      },
+      "lineWidth": {
+        "name": "线宽",
+        "type": "number",
+        "default": 4
+      },
+      "color": {
+        "name": "线框颜色",
+        "type": "color",
+        "default": "#191980"
+      },
+      "circleColor": {
+        "name": "圆点颜色",
+        "type": "color",
+        "default": "#c6c6e2"
+      },
+      "radius": {
+        "name": "圆点大小",
+        "type": "text",
+        "default": 15
+      },
+      "labelFormat": {
+        "name": "日期",
+        "type": "group",
+        "fold": true,
+        "children": {
+          "show": {
+            "name": "显示",
+            "type": "boolean",
+            "default": true
+          },
+          "format": {
+            "name": "日期格式",
+            "type": "select",
+            "options": [
+              {
+                "name": "年",
+                "value": "%Y"
+              },
+              {
+                "name": "年月",
+                "value": "%Y-%m"
+              },
+              {
+                "name": "年月日",
+                "value": "%Y-%m-%d"
+              },
+              {
+                "name": "月日年时分秒",
+                "value": "%Y/%m/%d %H:%M:%S"
+              }
+            ],
+            "default": "%Y"
+          }
+        }
+      },
+      "size": {
+        "name": "字号",
+        "type": "number",
+        "default": 22,
+        "range": [
+          10,
+          100
+        ]
+      },
+      "tip": {
+        "name": "标签样式",
+        "type": "group",
+        "fold": "true",
+        "children": {
+          "show": {
+            "name": "显示",
+            "type": "boolean",
+            "default": true
+          },
+          "layout": {
+            "name": "布局",
+            "type": "select",
+            "options": [
+              {
+                "name": "横轴一侧",
+                "value": "left"
+              },
+              {
+                "name": "轴线另一侧",
+                "value": "middle"
+              },
+              {
+                "name": " 轴两边",
+                "value": "right"
+              }
+            ],
+            "default": "left",
+            "show": [
+              [
+                "show",
+                "$eq",
+                true
+              ]
+            ]
+          },
+          "style": {
+            "name": "样式",
+            "type": "group",
+            "children": {
+              "opacity": {
+                "name": "透明度",
+                "type": "number",
+                "range": [
+                  0,
+                  1
+                ],
+                "default": 0.9
+              },
+              "color": {
+                "name": "颜色",
+                "type": "color",
+                "default": "#3e5f3e"
+              },
+              "radius": {
+                "name": "边框圆角",
+                "type": "select",
+                "options": [
+                  {
+                    "name": "默认",
+                    "value": "8px 8px"
+                  },
+                  {
+                    "name": "2",
+                    "value": "0 0"
+                  },
+                  {
+                    "name": "3",
+                    "value": "20px 20px"
+                  }
+                ],
+                "default": "8px 8px"
+              },
+              "fontfamily": {
+                "name": "字体",
+                "type": "search",
+                "options": [
+                  {
+                    "name": "微软雅黑",
+                    "value": "微软雅黑"
+                  },
+                  {
+                    "name": "宋体",
+                    "value": "SimSun"
+                  },
+                  {
+                    "name": "黑体",
+                    "value": "SimHei"
+                  },
+                  {
+                    "name": "隶书",
+                    "value": "LiSu"
+                  },
+                  {
+                    "name": "幼圆",
+                    "value": "YouYuan"
+                  },
+                  {
+                    "name": "火星文",
+                    "value": "Apple LiSung Light"
+                  },
+                  {
+                    "name": "tahoma",
+                    "value": "tahoma"
+                  },
+                  {
+                    "name": "arial",
+                    "value": "arial"
+                  },
+                  {
+                    "name": "sans-serif",
+                    "value": "sans-serif"
+                  },
+                  {
+                    "name": "sans-serif",
+                    "value": "Helvetica Neue"
+                  }
+                ],
+                "default": "Helvetica Neue"
+              }
+            }
+          }
+        }
+      }
+    },
+    "api_data": {
+      "source": [
+        {
+          "name": "Day of the Fight",
+          "date": "1959-04-26",
+          "img": "http://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Day_of_the_Fight_title.jpg/215px-Day_of_the_Fight_title.jpg"
+        },
+        {
+          "name": "The Seafarers",
+          "date": "1953-10-15",
+          "img": "http://upload.wikimedia.org/wikipedia/en/thumb/6/6c/Seafarers_title.jpg/225px-Seafarers_title.jpg"
+        },
+        {
+          "name": "Lolita (1962 film)",
+          "date": "1962-06-13",
+          "img": "http://upload.wikimedia.org/wikipedia/en/thumb/7/72/LolitaPoster.jpg/215px-LolitaPoster.jpg"
+        },
+        {
+          "name": "Fear and Desire",
+          "date": "1953-03-31",
+          "img": "http://upload.wikimedia.org/wikipedia/en/f/f7/Fear_and_Desire_Poster.jpg"
+        },
+        {
+          "name": "Paths of Glory",
+          "date": "1957-12-25",
+          "img": "http://upload.wikimedia.org/wikipedia/en/thumb/b/bc/PathsOfGloryPoster.jpg/220px-PathsOfGloryPoster.jpg"
+        },
+        {
+          "name": "A Clockwork Orange (film)",
+          "date": "1971-12-19",
+          "img": "http://upload.wikimedia.org/wikipedia/en/thumb/4/48/Clockwork_orangeA.jpg/220px-Clockwork_orangeA.jpg"
+        },
+        {
+          "name": "Killer's Kiss",
+          "date": "1955-09-28",
+          "img": "http://upload.wikimedia.org/wikipedia/en/thumb/a/a6/KillersKissPoster.jpg/220px-KillersKissPoster.jpg"
+        }
+      ]
+    }
+  }
+}

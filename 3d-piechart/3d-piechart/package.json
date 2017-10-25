@@ -1,0 +1,66 @@
+{
+  "name": "3d-piechart",
+  "version": "0.0.1",
+  "dependencies": {
+    "bcore": "0.0.18",
+    "jquery": "2.1.4",
+    "lodash": "4.6.1"
+  },
+  "datav": {
+    "cn_name": "3D饼图",
+    "icon": "",
+    "protocol": 2,
+    "type": [
+      ""
+    ],
+    "view": {
+      "width": "800",
+      "height": "600",
+      "minWidth": "200",
+      "minHeight": "100"
+    },
+    "apis": {
+      "source": {
+        "handler": "render",
+        "description": "接口描述",
+        "fields": {
+          "value": {
+            "description": "值说明"
+          }
+        }
+      }
+    },
+    "config": {
+      "size": {
+        "name": "字号",
+        "type": "number",
+        "default": 22,
+        "range": [
+          10,
+          100
+        ]
+      },
+      "button": {
+        "name": "按钮",
+        "type": "group",
+        "fold": true,
+        "children": {
+         "show": {
+		 "name": "显示",
+		 "type": "number",
+                 "min": 0,
+                 "max": 1,
+		 "default":0
+         }
+        }
+      }
+    },
+    "api_data": {
+      "source": [
+        {
+          "value": "2"
+        }
+      ]
+    }
+  }
+}
