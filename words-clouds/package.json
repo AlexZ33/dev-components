@@ -1,0 +1,82 @@
+{
+    "name": "words-clouds",
+    "version": "0.0.1",
+    "dependencies": {
+        "bcore": "0.0.18",
+        "jquery": "2.1.4",
+        "lodash": "4.6.1"
+    },
+    "datav": {
+        "cn_name": "词云",
+        "icon": "",
+        "protocol": 2,
+        "type": [
+            ""
+        ],
+        "view": {
+            "width": "400",
+            "height": "200",
+            "minWidth": "200",
+            "minHeight": "100"
+        },
+        "apis": {
+            "source": {
+                "handler": "render",
+                "description": "接口描述",
+                "fields": {
+                    "id": {
+                        "type": "string",
+                        "description": "ID"
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "词内容"
+                    },
+                    "url": {
+                        "type": "string",
+                        "description": "链接"
+                    }
+                }
+            }
+        },
+        "config": {
+            "size": {
+                "name": "字号",
+                "type": "number",
+                "default": 22,
+                "range": [
+                    10,
+                    100
+                ]
+            }
+        },
+        "api_data": {
+            "source": [{
+                    "id": "1",
+                    "content": "数空科技",
+                    "url": "http://www.bigdata-x.com/"
+                },
+                {
+                    "id": "2",
+                    "content": "有理数",
+                    "url": "http://www.youlishu.com/"
+                },
+                {
+                    "id": "3",
+                    "content": "五叶草大数空间",
+                    "url": "http://www.datawyc.com/"
+                },
+                {
+                    "id": "4",
+                    "content": "阿里云",
+                    "url": "http://www.aliyun.com/"
+                },
+                {
+                    "id": "5",
+                    "content": "镜心的小树屋",
+                    "url": "http://www.jxdxsw.com/"
+                }
+            ]
+        }
+    }
+}

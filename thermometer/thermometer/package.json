@@ -1,0 +1,111 @@
+{
+  "name": "thermometer",
+  "version": "0.0.1",
+  "dependencies": {
+    "bcore": "0.0.18",
+    "d3": "^3.5.17",
+    "jquery": "2.1.4",
+    "lodash": "4.6.1"
+  },
+  "datav": {
+    "cn_name": "温度计",
+    "icon": "",
+    "protocol": 2,
+    "type": [
+      ""
+    ],
+    "view": {
+      "width": "400",
+      "height": "200",
+      "minWidth": "200",
+      "minHeight": "100"
+    },
+    "apis": {
+      "source": {
+        "handler": "render",
+        "description": "接口描述",
+        "fields": {
+          "value": {
+            "type": "number",
+            "description": "温度值"
+          }
+        }
+      }
+    },
+    "config": {
+      "globals": {
+        "name": "全局",
+        "type": "group",
+        "children": {
+          "marginTop": {
+            "name": "上边距",
+            "type": "number",
+            "default": 50,
+            "range": [
+              0,
+              100
+            ]
+          },
+          "marginBottom": {
+            "name": "下边距",
+            "type": "number",
+            "default": 50,
+            "range": [
+              0,
+              100
+            ]
+          },
+          "marginLeft": {
+            "name": "左边距",
+            "type": "number",
+            "default": 50,
+            "range": [
+              0,
+              100
+            ]
+          },
+          "marginRight": {
+            "name": "右边距",
+            "type": "number",
+            "default": 30,
+            "range": [
+              0,
+              100
+            ]
+          }
+        }
+      },
+      "tempLine": {
+        "name": "温度线",
+        "type": "group",
+        "children": {
+          "minTemp": {
+            "name": "最大温度",
+            "type": "number",
+            "default": 20.2,
+            "range": [
+              -60,
+              60
+            ]
+          },
+          "maxTemp": {
+            "name": "最小温度",
+            "type": "number",
+            "default": 15.4,
+            "range": [
+              -60,
+              60
+            ]
+          }
+        }
+      }
+    },
+    "api_data": {
+      "source": [
+        {
+          "value": "19.2"
+        }
+      ]
+    }
+  }
+}
