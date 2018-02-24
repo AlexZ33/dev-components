@@ -1,0 +1,118 @@
+#!/usr/bin/env node
+'use strict';
+
+const esminify = require('../index');
+const cmd = require('commander');
+
+function parseExclude(str) {
+  var rules = [];
+  if (!str) {
+    return rules;
+  }
+  str.split(',').forEach(function (rule) {
+    rule = rule.trim();
+    if (!rule) {
+      return;
+    }
+    rules.push(rule);
+  });
+  return rules;
+}
+
+cmd.on('--help', function () {
+  console.log('  Example:'); // eslint-disable-line
+  console.log(''); // eslint-disable-line
+  console.log('    > esminify single.js -o single.min.js'); // eslint-disable-line
+  console.log('    > esminify appdir/ -o targetdir/'); // eslint-disable-line
+  console.log(''); // eslint-disable-line
+  console.log('  Specific:'); // eslint-disable-line
+  console.log(''); // eslint-disable-line
+  console.log('    * default exclude rules: .git/,.svn/,node_modules/'); // eslint-disable-line
+  console.log(''); // eslint-disable-line
+});
+/*
+function parseCmd(str) {
+  var result = {};
+  if (!str) {
+    return undefined;
+  }
+  if (str === 'true') {
+    return result;
+  }
+  result.globals = str.split(',');
+  return result;
+}
+*/
+
+function absPath(p) {
+  var flag = false;
+  if (process.platform.indexOf('win') === 0) {
+    if (/^\w:/.test(p)) {
+      flag = true;
+    }
+  } else {
+    if (/^\//.test(p)) {
+      flag = true;
+    }
+  }
+  return flag;
+}
+
+cmd
+  .usage('[options] $your_code_dir')
+  .description('minify you js code')
+  .option('-x, --exclude [value]', 'exclude dirs')
+  .option('--override-exclude', 'force override the default exclude rules')
+  .option('-o, --output [value]', 'set the output dir')
+  .option('-c, --config [value]', 'config the minify format')
+  .option('--keep-top-level', 'if keep toplevel vars, default is false')
+  .parse(process.argv);
+
+
+var args = cmd;
+var input = cmd.args[0];
+var output = args.output;
+var cwd = process.cwd();
+var path = require('path');
+var exclude = parseExclude(args.exclude);
+
+if (!input) {
+  cmd.help();
+  process.exit(0);
+}
+
+if (!absPath(input)) {
+  input = path.join(cwd, input);
+}
+
+if (!output) {
+  if (/\.\w+$/.test(output)) {
+    output = input.replace(/\.(\w+)$/, '.min.$1');
+  } else {
+    output = input.replace(/\\|\/$/g, '') + '.min';
+  }
+}
+
+if (!absPath(output)) {
+  output = path.join(cwd, output);
+}
+
+esminify.minify({
+  input: input,
+  output: output,
+  exclude: exclude,
+  overrideExclude: args.overrideExclude,
+  keepTopLevel: args.keepTopLevel,
+  cmd: args.cmd,
+  onFileProcess: function (obj) {
+    console.log('minify file:', obj.input.substr(cwd.length + 1), '>', obj.output.substr(cwd.length + 1)); // eslint-disable-line
+  }
+}, function (err, code) {
+  if (err) {
+    console.log('minify failed', err); // eslint-disable-line
+    process.exit(1);
+  } else {
+    console.log('minify success'); // eslint-disable-line
+    process.exit(0);
+  }
+});
